@@ -1,2 +1,8 @@
-<manifest
-  package="io.github.kioba.feed"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="io.github.kioba.feed"
+  >
+
+  <application>
+    <activity android:name=".ComposeActivity" />
+  </application>
+</manifest>

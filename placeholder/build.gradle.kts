@@ -22,4 +22,13 @@ dependencies {
   Dependencies.persistence.forEach { implementation(it) }
   Dependencies.persistenceKapt.forEach { kapt(it) }
   Dependencies.persistenceTest.forEach { testImplementation(it) }
+
+
+  fun List<DependencyType>.forDependendency() = forEach {
+    when (it) {
+      is Implementation -> implementation(it.lib)
+      is Kapt -> kapt(it.lib)
+    }
+  }
+  Dependencies.compose.forDependendency()
 }

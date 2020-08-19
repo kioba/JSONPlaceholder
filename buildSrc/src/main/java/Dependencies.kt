@@ -1,6 +1,6 @@
 object Version {
 
-  const val kotlin = "1.3.31"
+  const val kotlin = "1.3.51"
 
   // Unit Test
   const val mockK = "1.9"
@@ -26,7 +26,7 @@ object Version {
 
   // androidX constraintLayout version
   const val constraintLayout = "1.1.3"
-  const val androidXConstraintLayout = "2.0.0-beta1"
+//  const val androidXConstraintLayout = "2.0.0-beta1"
 
   // androidX
   const val androidXLifecycle = "2.0.0"
@@ -71,7 +71,7 @@ object Dependencies {
 
   // androidX constraintLayout
   private const val constraintLayout =
-    "androidx.constraintlayout:constraintlayout:${Version.androidXConstraintLayout}"
+    "androidx.constraintlayout:constraintlayout:${Version.constraintLayout}"
 
   // androidX Architecture components
   private const val lifecycleExtensions =
@@ -172,7 +172,7 @@ object Dependencies {
   )
 
   val standard: List<String> = listOf(
-    kotlin_stdlib,
+//    kotlin_stdlib,
     androidXAppcompat,
     androidXCoreKtx,
     constraintLayout,
@@ -232,6 +232,19 @@ object Dependencies {
     roomTesting
   )
 
+  val compose: List<DependencyType> = listOf(
+    Libs.compose_runtime.impl(),
+    Libs.compose_compiler.kapt(),
+    Libs.compose_layout.impl(),
+    Libs.compose_core.impl(),
+    Libs.compose_android_text.impl(),
+    Libs.compose_framework.impl(),
+    Libs.compose_tooling.impl(),
+    Libs.compose_animation.impl(),
+    Libs.compose_material.impl(),
+    Libs.compose_text.impl()
+  )
 
-
+  private fun String.kapt() = Kapt(this)
+  private fun String.impl() = Implementation(this)
 }

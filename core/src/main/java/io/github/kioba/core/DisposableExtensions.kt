@@ -4,4 +4,4 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 
-fun Disposable.registerForDispose(pool: CompositeDisposable) = pool.add(this)
+fun Disposable.registerForDispose(pool: CompositeDisposable): Boolean = pool.add(this)

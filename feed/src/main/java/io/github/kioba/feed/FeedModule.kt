@@ -1,5 +1,7 @@
 package io.github.kioba.feed
 
+import android.app.Activity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +24,9 @@ interface FeedModule {
   @ContributesAndroidInjector(modules = [(InjectViewModel::class)])
   fun bindFeedFragment(): FeedFragment
 
+  @ContributesAndroidInjector(modules = [(InjectActivityViewModel::class)])
+  fun bindComposeActivity(): ComposeActivity
+
   @Module
   class InjectViewModel {
 
@@ -32,6 +37,20 @@ interface FeedModule {
     ): IFeedViewModel =
       ViewModelProviders.of(
         target.activity as FragmentActivity,
+        factory
+      ).get(FeedViewModel::class.java)
+  }
+
+  @Module
+  class InjectActivityViewModel {
+
+    @Provides
+    fun provideFeatureViewModel(
+      factory: ViewModelProvider.Factory,
+      target: ComposeActivity
+    ): IFeedViewModel =
+      ViewModelProviders.of(
+        target,
         factory
       ).get(FeedViewModel::class.java)
   }

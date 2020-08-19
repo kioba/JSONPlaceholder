@@ -14,4 +14,13 @@ dependencies {
 
   Dependencies.testStandard.forEach { testImplementation(it) }
   Dependencies.testAndroidStandard.forEach { androidTestImplementation(it) }
+
+  fun List<DependencyType>.forDependency() = forEach {
+    when (it) {
+      is Implementation -> implementation(it.lib)
+      is Kapt -> kapt(it.lib)
+    }
+  }
+
+  Dependencies.compose.forDependency()
 }
